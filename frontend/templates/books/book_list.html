@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book List{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Book List</h1>
+    <form method="get" class="my-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search for a book" value="{{ query }}">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-search"></i> Search
+            </button>
+        </div>
+    </form>
+
+    {% if books %}
+    <div class="row">
+        {% for book in books %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if book.cover %}
+                <img src="{{ book.cover.url }}" class="card-img-top img-fluid" alt="{{ book.title }}">
+                {% else %}
+                <img src="{% static 'images/placeholder-book-cover.png' %}" class="card-img-top img-fluid" alt="No cover available">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">
+                        <strong>Author:</strong> {{ book.author }}
+                        <br>
+                        <strong>Price:</strong> ${{ book.price }}
+                    </p>
+                    <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary">
+                        <i class="bi bi-info-circle"></i> Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center"><i class="bi bi-info-circle"></i> No books found.</p>
+    {% endif %}
+</div>
+{% endblock %}

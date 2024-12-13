@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h2>Welcome, {{ user.username }}!</h2>
+    <p>Email: {{ user.email }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+
+    <form method="post" action="{% url 'account' %}">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+    </form>
+{% else %}
+  
+    <div class="login-form">
+        <h2>Log In</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+{% endif %}
+{% endblock %}

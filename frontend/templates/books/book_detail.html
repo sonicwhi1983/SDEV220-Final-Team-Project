@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">{{ book.title }}</h1>
+    <div class="row">
+        <div class="col-md-4">
+            {% if book.cover %}
+            <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="img-fluid rounded">
+            {% else %}
+            <img src="{% static 'images/placeholder-book-cover.png' %}" alt="No cover available" class="img-fluid rounded">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="book-info">
+                <p><i class="bi bi-person"></i> <strong>Author:</strong> 
+                    <a href="{% url 'author_detail' book.author.pk %}">{{ book.author }}</a>
+                </p>
+                <p><i class="bi bi-book"></i> <strong>ISBN:</strong> {{ book.isbn }}</p>
+                <p><i class="bi bi-calendar"></i> <strong>Published Date:</strong> {{ book.published_date }}</p>
+                <p><i class="bi bi-tag"></i> <strong>Category:</strong> {{ book.category }}</p>
+                <p><i class="bi bi-currency-dollar"></i> <strong>Price:</strong> ${{ book.price }}</p>
+                <p><strong>Description:</strong> {{ book.description_short }}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Comments Section -->
+    <div class="comments-section mt-4">
+        <h2><i class="bi bi-chat-text"></i> Comments and Reviews</h2>
+        <ul class="list-group mb-4">
+            {% for comment in comments %}
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="bi bi-person-circle"></i> <strong>{{ comment.user }}</strong>
+                        <p>{{ comment.text }}</p>
+                        <small class="text-muted"><i class="bi bi-clock"></i> {{ comment.created_at }}</small>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-success btn-sm" data-comment-id="{{ comment.id }}">
+                            <i class="bi bi-hand-thumbs-up"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm" data-comment-id="{{ comment.id }}">
+                            <i class="bi bi-hand-thumbs-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            {% empty %}
+            <li class="list-group-item text-center">
+                <i class="bi bi-info-circle"></i> No comments yet. Be the first to leave a review!
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% if user.is_authenticated %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="comment" class="form-label"><i class="bi bi-pencil"></i> Add a Comment</label>
+                <textarea class="form-control" id="comment" name="text" rows="3" placeholder="Write your comment here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-send"></i> Submit
+            </button>
+        </form>
+        {% else %}
+        <p><i class="bi bi-lock"></i> Please <a href="{% url 'login' %}">log in</a> to leave a comment.</p>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'book_list' %}" class="btn btn-secondary mt-4">Back to Book List</a>
+</div>
+{% endblock %}
