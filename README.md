@@ -1,5 +1,5 @@
 # Anywhere and Everywhere Bookstore
-This is a Software Development using Python group project.
+This is a software development project using Python as a group project.
 
 ## Team Members
 - Project Manager: Houda Elkarachi
