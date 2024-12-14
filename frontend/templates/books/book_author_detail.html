@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>{{ author.first_name }} {{ author.last_name }}</h1>
-<div class="author-detail">
+<div class="author-detail-container">
     <div class="author-picture">
         {% if author.picture %}
             <img src="{{ author.picture.url }}" alt="{{ author.first_name }} {{ author.last_name }}">
@@ -17,14 +17,14 @@
 </div>
 
 <h2>Books by {{ author.first_name }} {{ author.last_name }}</h2>
-<div class="book-grid">
+<div class="author-book-grid">
     {% for book in books %}
-        <div class="book-card">
+        <div class="author-book-card">
             {% if book.cover %}
-                <img src="{{ book.cover.url }}" alt="{{ book.title }}">
+                <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="author-book-cover">
             {% endif %}
-            <div class="book-info">
-                <h2><a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a></h2>
+            <div class="author-book-info">
+                <h3><a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a></h3>
                 <p><strong>Price:</strong> ${{ book.price }}</p>
                 <p><strong>ISBN:</strong> {{ book.isbn }}</p>
             </div>
@@ -32,5 +32,5 @@
     {% endfor %}
 </div>
 
-<a href="{% url 'book_author_list' %}" class="btn">Back to Author List</a>
+<a href="{% url 'book_author_list' %}" class="back-to-author-list">Back to Author List</a>
 {% endblock %}

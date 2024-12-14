@@ -18,8 +18,8 @@ body {
 
 /* Header */
 header {
-    background-color: #313131; /* Dark gray background from palette */
-    color: #fff; /* White text */
+    background-color: #fff; /* Dark gray background from palette */
+    color: #313131; /* White text */
     padding: 1rem 0;
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -32,26 +32,212 @@ header h1 {
 }
 
 /* Navbar */
-.navbar {
-    background-color: #313131;
-    padding: 1rem;
+.navbar-toggler {
+    border: 1px solid #fff; /* White border */
+    background-color: transparent; /* Transparent background */
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    position: relative; /* Ensure the lines are positioned correctly */
 }
 
-.navbar .navbar-brand {
-    color: #fff;
-    font-size: 1.5rem;
-    text-decoration: none;
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background-color: #fff; /* White lines */
+    position: absolute;
+    left: 0;
 }
 
-.navbar .nav-link {
-    color: #fff;
-    font-size: 1rem;
-    margin-right: 1rem;
-    transition: color 0.3s ease;
+.navbar-toggler-icon::before {
+    top: -8px; 
+}
+
+.navbar-toggler-icon::after {
+    top: 8px; 
 }
 
 .navbar .nav-link:hover {
-    color: #5c5b5b; /* Light gray hover */
+    color: #fff; /* Light gray hover */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* search bar */
+.search-container {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap; 
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0;
+}
+
+.search-bar {
+    flex: 1; 
+    padding: 0.5rem; 
+    font-size: 1rem; 
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 2.5rem
+}
+
+.search-button {
+    padding: 0.5rem 1rem; 
+    font-size: 1rem; 
+    background-color: #007bff; 
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5rem;
+    height: 2.5rem
+}
+
+.category-label {
+    margin-right: 0.5rem;
+    
+}
+
+.category-select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    height: 2.5rem
+}
+
+.apply-button {
+    padding: 0.5rem 1rem; 
+    font-size: 1rem; 
+    background-color: #007bff; 
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover, .apply-button:hover {
+    background-color: #2238a6; 
+}
+
+/* author list */
+.author-list {
+    margin-top: 2rem; 
+    overflow: hidden;
+    border-top: none;
+
+}
+
+.author-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; 
+}
+
+.author-list li {
+    font-size: 1.5rem; 
+    margin-bottom: 1rem; 
+}
+
+.author-list .author-name {
+    display: block;
+    font-size: 1.5rem; 
+    margin-bottom: 1rem; 
+    color: #000; 
+    text-decoration: none;
+}
+
+.author-list .author-name:hover {
+    color: #4b4d4f; 
+    text-decoration: underline;
+}
+
+/* author detail  */
+.author-detail-container {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.author-info {
+    flex: 1;
+    margin-left: 2rem;
+}
+
+.author-picture {
+    flex-shrink: 0; 
+}
+
+.author-picture img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+/* book grid in author details */
+.author-book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.author-book-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    width: calc(25% - 1rem); /* Four cards per row */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.author-book-cover {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.author-book-info h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.author-book-info p {
+    margin: 0.5rem 0;
+}
+
+.back-to-author-list {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-top: 2rem; 
+}
+
+.back-to-author-list:hover {
+    background-color: #0056b3;
 }
 
 /* Footer */
@@ -268,3 +454,102 @@ footer {
     color: #666;
 }
 
+/* login form */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.login-form button {
+    width: auto; 
+    padding: 0.5rem 1rem; 
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; 
+    margin: 0 auto; 
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}
+
+/* account info */
+.account-info {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-info h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.account-info p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.user-info {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.logout-button {
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
