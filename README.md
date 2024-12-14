@@ -1,5 +1,5 @@
-# Bookstore Inventory Management System
-This is a Python Class Group Project. 
+# Anywhere and Everywhere Bookstore
+This is a Software Development using Python group project.
 
 ## Team Members
 - Project Manager: Houda Elkarachi
